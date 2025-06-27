@@ -7,7 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/order-number.css">
+
     <link rel="icon" type="image/png" href="static\icono-pestaña.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
@@ -43,16 +48,18 @@
         {% endif %}
 
         <div class="numero-de-pedido">
-            <div class="form-group">
-                <label for="numero-pedido" class="label">Número de Pedido (opcional)</label>
-                <input 
-                    type="text" 
-                    class="input" 
-                    id="numero-pedido" 
-                    name="numero-pedido" 
-                    placeholder="Ej: 12345"
-                    value="{{ numero_pedido or '' }}">
-            </div>
+            <form method="post" action="/actualizar-pedido">
+                <div class="form-group">
+                    <label for="numero-pedido" class="label">Número de Pedido (opcional)</label>
+                    <input 
+                        type="text" 
+                        class="input" 
+                        id="numero-pedido" 
+                        name="numero-pedido" 
+                        placeholder="Ej: 123456"
+                        value="{{ numero_pedido or '' }}">
+                </div>
+            </form>
             
             <div class="enlaces-pedido">
                 <a href="#" class="link-pedido prestashop" id="link-prestashop" target="_blank">

@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nroTrello = document.getElementById('nro-trello');
     const linkPrestashop = document.getElementById('link-prestashop');
     const linkTrello = document.getElementById('link-trello');
+    const formPedido = document.querySelector('form[action="/actualizar-pedido"]');
     
     // Validar que solo se ingresen números
     numeroPedidoInput.addEventListener('input', function(e) {
@@ -39,6 +40,13 @@ document.addEventListener('DOMContentLoaded', function() {
             
             linkPrestashop.style.display = 'inline-block';
             linkTrello.style.display = 'inline-block';
+            
+            // Enviar formulario automáticamente cuando se complete el número
+            if (formPedido) {
+                setTimeout(() => {
+                    formPedido.submit();
+                }, 500); // Pequeño delay para que el usuario vea el número
+            }
         } else {
             nroPrestashop.textContent = '---';
             nroTrello.textContent = '---';
