@@ -16,6 +16,7 @@
     color: #fff;
     transition: border 0.2s, box-shadow 0.2s;
     box-shadow: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .input:focus {
@@ -43,6 +44,7 @@
     border: 1px solid #232336;
     transition: all 0.2s;
     display: none;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .link-pedido:hover {
