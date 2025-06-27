@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const linkTrello = document.getElementById('link-trello');
     const formPedido = document.querySelector('form[action="/actualizar-pedido"]');
     
+    // Bandera para evitar envío automático al cargar la página
+    let isInitialLoad = true;
+    let lastSubmittedValue = '';
+    
     // Validar que solo se ingresen números
     numeroPedidoInput.addEventListener('input', function(e) {
         // Remover cualquier carácter que no sea número
@@ -41,8 +45,9 @@ document.addEventListener('DOMContentLoaded', function() {
             linkPrestashop.style.display = 'inline-block';
             linkTrello.style.display = 'inline-block';
             
-            // Enviar formulario automáticamente cuando se complete el número
-            if (formPedido) {
+            // Solo enviar automáticamente si no es la carga inicial y el valor cambió
+            if (!isInitialLoad && numero !== lastSubmittedValue && formPedido) {
+                lastSubmittedValue = numero;
                 setTimeout(() => {
                     formPedido.submit();
                 }, 500); // Pequeño delay para que el usuario vea el número
@@ -58,8 +63,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Actualizar enlaces cuando se ingresa el número
-    numeroPedidoInput.addEventListener('input', actualizarEnlaces);
+    numeroPedidoInput.addEventListener('input', function() {
+        if (isInitialLoad) {
+            isInitialLoad = false;
+        }
+        actualizarEnlaces();
+    });
     
     // Actualizar enlaces al cargar la página si ya hay un valor
     actualizarEnlaces();
+    
+    // Marcar que ya no es la carga inicial después de un breve delay
+    setTimeout(() => {
+        isInitialLoad = false;
+    }, 1000);
 }); 
